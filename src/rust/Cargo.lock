@@ -657,6 +657,7 @@ checksum = "ea54977c6e37236839ffcbc20b5dcea58aa32ae43fbef54a81e1011dc6b19061"
 dependencies = [
  "extendr-ffi",
  "extendr-macros",
+ "ndarray",
  "once_cell",
  "paste",
 ]
