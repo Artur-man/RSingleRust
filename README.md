@@ -4,9 +4,10 @@ This is an experimental package for devising R wrappers of SingleRust using exte
 See [https://github.com/SingleRust/SingleRust](https://github.com/SingleRust/SingleRust) for more information.
 
 ``` r
-library(anndataR)
 librart(RSingleRust)
 
-file <- system.file("extdata", "example.h5ad", package = "anndataR")
-read_h5ad_memory(file)
+# read dense matrix
+read_matrix(matrix(runif(25),nrow = 5,ncol = 5),
+            paste0("cells", 1:5),
+            paste0("genes", 1:5))
 ```
