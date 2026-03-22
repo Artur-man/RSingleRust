@@ -52,3 +52,19 @@ test_that("read ondisk csr matrix (large hdf5)", {
   # read sparse
   read_matrix_hdf5(tmp, "X/")
 })
+
+test_that("read single cell experiment", {
+
+  skip_if_not_installed("SingleCellExperiment")
+
+  # example
+  example(SingleCellExperiment, echo=FALSE)
+
+  # read
+  read_matrix_SCE(sce,
+                  "data",
+                  paste0("cells", 1:nrow(sce)),
+                  paste0("genes", 1:ncol(sce)))
+})
+
+

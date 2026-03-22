@@ -68,6 +68,44 @@ fn read_matrix_hdf5(file_path: &str, group_path: &str) -> Result<()> {
     Ok(())
 }
 
+/// temp function
+/// @export
+#[extendr]
+fn read_matrix_SCE(obj: S4, slot: String, cells: Vec<String>, genes: Vec<String>) {
+
+    // read singlecellexperiment data
+    let assays: S4 = obj.get_slot("assays").unwrap().try_into().unwrap();
+    let data_slot: S4 = assays.get_slot(slot).unwrap().try_into().unwrap();
+    let list_data: List = data_slot.get_slot("listData").unwrap().try_into().unwrap();
+
+    // visualize type
+    println!("{}", std::any::type_name_of_val(&assays));
+
+    let counts: ArrayView2<i32> = list_data.dollar("counts").unwrap().try_into().unwrap();
+
+    // visualize type
+    println!("{}", std::any::type_name_of_val(&counts));
+
+    // get shape
+    // let shape = counts.shape();
+    // println!("Working with matrix of shape {:?}", shape);
+
+    // convert to anndata::ArrayData
+    let array_data: ArrayData = counts.to_owned().into();
+
+    // Create the AnnData object
+    let adata = IMAnnData::new_basic(
+        array_data,
+        cells,
+        genes
+    ).unwrap();
+
+    // get the shape of x
+    let adata_x: IMArrayElement = adata.x();
+    let shape = adata_x.get_shape().unwrap();
+    println!("Working with matrix of shape {:?}", shape);
+}
+
 // Macro to generate exports.
 // This ensures exported functions are registered with R.
 // See corresponding C code in `entrypoint.c`.
@@ -75,4 +113,5 @@ extendr_module! {
     mod RSingleRust;
     fn read_matrix;
     fn read_matrix_hdf5;
+    fn read_matrix_SCE;
 }

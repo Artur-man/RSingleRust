@@ -2,10 +2,10 @@
 % Please edit documentation in R/extendr-wrappers.R
 \name{read_matrix}
 \alias{read_matrix}
-\title{read dense matrix as an in-memory AnnData}
+\title{read dense matrix as an in-memory AnnData in Rust}
 \usage{
 read_matrix(matrix, cells, genes)
 }
 \description{
-read dense matrix as an in-memory AnnData
+read dense matrix as an in-memory AnnData in Rust
 }

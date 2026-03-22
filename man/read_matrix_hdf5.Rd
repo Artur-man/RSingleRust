@@ -2,10 +2,10 @@
 % Please edit documentation in R/extendr-wrappers.R
 \name{read_matrix_hdf5}
 \alias{read_matrix_hdf5}
-\title{temp function}
+\title{read hdf5 csr matrix as an in-memory AnnData in Rust}
 \usage{
 read_matrix_hdf5(file_path, group_path)
 }
 \description{
-temp function
+read hdf5 csr matrix as an in-memory AnnData in Rust
 }
