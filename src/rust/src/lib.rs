@@ -1,7 +1,20 @@
 use extendr_api::prelude::*;
 use ndarray::ArrayView2; // ndarray for R matrices
+
+use anndata::{
+    ArrayData,
+    Readable,
+    backend::{Backend, DataContainer, GroupOp},
+    data::DynCsrMatrix,
+    data::DynCscMatrix
+};
 use anndata_memory::{IMAnnData, IMArrayElement}; // in memory anndata for feature observation matrices
-use anndata::ArrayData; // array data
+use anndata_hdf5::H5;
+
+use nalgebra_sparse::CsrMatrix;
+use nalgebra_sparse::CscMatrix;
+
+use anyhow::Result;
 
 pub mod io;
 
@@ -40,8 +53,19 @@ fn read_matrix(matrix: ArrayView2<f64>, cells: Vec<String>, genes: Vec<String>) 
 /// temp function
 /// @export
 #[extendr]
-fn read_matrix_hdf5(file_path: String) {
+fn read_matrix_hdf5(file_path: &str, group_path: &str) -> Result<()> {
 
+    // read from h5
+    let file = H5::open(file_path)?;
+    let group = file.open_group(group_path)?;
+    let container = DataContainer::<H5>::Group(group);
+    let csr = CsrMatrix::<f64>::read(&container)?;
+    let matrix = DynCsrMatrix::from(csr);
+
+    // convert to anndata::ArrayData
+    let array_data = ArrayData::CsrMatrix(matrix);
+
+    Ok(())
 }
 
 // Macro to generate exports.

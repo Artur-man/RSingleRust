@@ -2,10 +2,10 @@
 % Please edit documentation in R/extendr-wrappers.R
 \name{read_matrix}
 \alias{read_matrix}
-\title{temp function}
+\title{read dense matrix as an in-memory AnnData}
 \usage{
 read_matrix(matrix, cells, genes)
 }
 \description{
-temp function
+read dense matrix as an in-memory AnnData
 }

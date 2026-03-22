@@ -11,6 +11,7 @@ dependencies = [
  "anndata-memory",
  "anyhow",
  "extendr-api",
+ "nalgebra-sparse",
 ]
 
 [[package]]

@@ -9,7 +9,10 @@ Description: R wrappers for SingleRust using extendr
 License: 
 biocViews:
 Imports:
-  anndataR
+  anndataR,
+  rhdf5,
+  HDF5Array,
+  zellkonverter
 Suggests:
     testthat (>= 3.0.0),
 Encoding: UTF-8

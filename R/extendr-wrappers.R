@@ -10,8 +10,13 @@
 #' @useDynLib RSingleRust, .registration = TRUE
 NULL
 
-#' temp function
+#' read dense matrix as an in-memory AnnData
 #' @export
 read_matrix <- function(matrix, cells, genes) invisible(.Call(wrap__read_matrix, matrix, cells, genes))
+
+#' temp function
+#' @export
+read_matrix_hdf5 <- function(file_path, group_path) .Call(wrap__read_matrix_hdf5, file_path, group_path)
+
 
 # nolint end
