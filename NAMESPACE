@@ -3,6 +3,5 @@
 export(get_qc_metrics)
 export(read_matrix_dense)
 export(read_matrix_hdf5)
-export(sparse_check_s4)
 export(update_S4)
 useDynLib(RSingleRust, .registration = TRUE)

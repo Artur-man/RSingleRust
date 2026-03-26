@@ -24,10 +24,7 @@ update_S4 <- function(obj, slot) .Call(wrap__update_S4, obj, slot)
 
 #' temp function
 #' @export
-sparse_check_s4 <- function(obj) .Call(wrap__sparse_check_s4, obj)
-
-#' temp function
-#' @export
 get_qc_metrics <- function(obj, slot, cells, genes) .Call(wrap__get_qc_metrics, obj, slot, cells, genes)
+
 
 # nolint end
