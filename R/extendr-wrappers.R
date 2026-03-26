@@ -10,16 +10,24 @@
 #' @useDynLib RSingleRust, .registration = TRUE
 NULL
 
-#' read dense matrix as an in-memory AnnData in Rust
+#' read dense matrix as an in-memory AnnData
 #' @export
-read_matrix <- function(matrix, cells, genes) invisible(.Call(wrap__read_matrix, matrix, cells, genes))
+read_matrix_dense <- function(matrix, cells, genes) invisible(.Call(wrap__read_matrix_dense, matrix, cells, genes))
 
-#' read hdf5 csr matrix as an in-memory AnnData in Rust
+#' temp function
 #' @export
 read_matrix_hdf5 <- function(file_path, group_path) .Call(wrap__read_matrix_hdf5, file_path, group_path)
 
-#' read CSE matrix as an in-memory AnnData in Rust
+#' temp function
 #' @export
-read_matrix_SCE <- function(obj, slot, cells, genes) invisible(.Call(wrap__read_matrix_SCE, obj, slot, cells, genes))
+update_S4 <- function(obj, slot) .Call(wrap__update_S4, obj, slot)
+
+#' temp function
+#' @export
+sparse_check_s4 <- function(obj) .Call(wrap__sparse_check_s4, obj)
+
+#' temp function
+#' @export
+get_qc_metrics <- function(obj, slot, cells, genes) .Call(wrap__get_qc_metrics, obj, slot, cells, genes)
 
 # nolint end
